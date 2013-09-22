@@ -291,5 +291,22 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   @SimpleFunction
   public void LogInfo(String message) {
     Log.i(LOG_TAG, message);
+    
   }
+  /**
+   * Adds the option to launch a box as a load/connect or search.
+   * You can select the text of the title and the message.
+   * It´s mandatory close, clocking or adding it to a procedure.
+   * @author xcitizen.team@gmail.com (José Mª Martín)
+   */
+  @SimpleFunction(description = "Is added as a loading dialogue can enter the title and message"
+  "It´s mandatory close, clocking or adding it to a procedure.")
+  public void LaunchConect(String message, String title) {
+    progress = ProgressDialog.show(activity, title, message);
+  }
+
+   @SimpleFunction(description = "Use to eliminate loading dialog screen.")
+   public void ClearConect() {
+     progress.dismiss();
+   }
 }
