@@ -1,4 +1,4 @@
-// -*- mode: java; c-basic-offset: 2; -*-
+﻿// -*- mode: java; c-basic-offset: 2; -*-
 // Copyright 2009-2011 Google, All Rights reserved
 // Copyright 2011-2012 MIT, All rights reserved
 // Released under the MIT License https://raw.github.com/mit-cml/app-inventor/master/mitlicense.txt
@@ -15,6 +15,7 @@ import com.google.appinventor.components.runtime.util.SdkLevel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -300,13 +301,14 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    * @author xcitizen.team@gmail.com (José Mª Martín)
    */
   @SimpleFunction(description = "Is added as a loading dialogue can enter the title and message"
-  "It´s mandatory close, clocking or adding it to a procedure.")
-  public void LaunchConect(String message, String title) {
-    progress = ProgressDialog.show(activity, title, message);
+  "It´s mandatory close, clocking or adding it to a procedure."
+  "Cancelable indicates if user can close the dialog by touching outside it")
+  public void ShowProgressDialog(String message, String title, boolean cancelable) {
+    progress = ProgressDialog.show(activity, title, message, "true", cancelable);
   }
 
-   @SimpleFunction(description = "Use to eliminate loading dialog screen.")
-   public void ClearConect() {
-     progress.dismiss();
-   }
+  @SimpleFunction(description = "Used to eliminate loading dialog screen.")
+  public void HideProgressDialog() {
+    progress.dismiss();
+  }
 }
