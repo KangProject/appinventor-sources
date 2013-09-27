@@ -883,6 +883,11 @@ public final class YoungAndroidFormUpgrader {
       // and ShowTextDialog
       srcCompVersion = 2;
     }
+    if (srcCompVersion < 3) {
+      // ShowProgressDialog and HideProgressDialog methods were added. No blocks need to be modified
+      // to upgrade to version 3.
+      srcCompVersion = 3;
+    }
     return srcCompVersion;
   }
 
