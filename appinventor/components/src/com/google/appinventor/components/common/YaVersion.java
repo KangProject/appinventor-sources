@@ -231,11 +231,14 @@ public class YaVersion {
   // - FORM_COMPONENT_VERSION was incremented to 11.
   // For YOUNG_ANDROID_VERSION 80:
 <<<<<<< HEAD
+<<<<<<< HEAD
   // - WEB_COMPONENT_VERSION was incremented to 4.
   // For YOUNG_ANDROID_VERSION 81:
   // - NOTIFIER_COMPONENT_VERSION was incremented to 3.
   public static final int YOUNG_ANDROID_VERSION = 81;
 =======
+=======
+>>>>>>> origin/master
   // - LISTPICKER_COMPONENT_VERSION was incremented to 7.
   // For YOUNG_ANDROID_VERSION 81:
   // - NOTIFIER_COMPONENT_VERSION was incremented to 3.
@@ -243,7 +246,10 @@ public class YaVersion {
   // - ACCELEROMETERSENSOR_COMPONENT_VERSION was incremented to 3;
 
     public static final int YOUNG_ANDROID_VERSION = 82;
+<<<<<<< HEAD
 >>>>>>> 071f841625557167ddfa5a78731395c054e03acd
+=======
+>>>>>>> origin/master
 
   // ............................... Blocks Language Version Number ...............................
 
@@ -520,10 +526,14 @@ public class YaVersion {
   // - To ShowChooseDialog and ShowTextDialog, new arg was added to indicate if dialog is cancelable
   // For NOTIFIER_COMPONENT_VERSION 3:
 <<<<<<< HEAD
+<<<<<<< HEAD
   // - Added ShowProgressDialog and HideProgressDialog methods.
 =======
   // - Added NotifierColor, TextColor and NotifierLength options
 >>>>>>> 071f841625557167ddfa5a78731395c054e03acd
+=======
+  // - Added NotifierColor, TextColor and NotifierLength options
+>>>>>>> origin/master
   public static final int NOTIFIER_COMPONENT_VERSION = 3;
 
   // For ORIENTATIONSENSOR_COMPONENT_VERSION = 2:

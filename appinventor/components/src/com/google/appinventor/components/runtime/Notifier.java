@@ -76,6 +76,15 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   // Notifier text color
   private int textColor = Color.WHITE;
 
+  //Length of Notifier message display
+  private int notifierLength = Component.TOAST_LENGTH_LONG;
+
+  // Notifier background color
+  private int backgroundColor = Color.DKGRAY;
+
+  // Notifier text color
+  private int textColor = Color.WHITE;
+
   /**
    * Creates a new Notifier component.
    *
@@ -321,6 +330,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     int fontsize = (SdkLevel.getLevel() >= SdkLevel.LEVEL_ICE_CREAM_SANDWICH)
         ? 22 : 15;
 <<<<<<< HEAD
+<<<<<<< HEAD
     Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
     TextView textView = new TextView(activity);
     textView.setTextColor(Color.WHITE);
@@ -331,6 +341,13 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     textView.setBackgroundColor(backgroundColor);
     textView.setTextColor(textColor);
 >>>>>>> 071f841625557167ddfa5a78731395c054e03acd
+=======
+    Toast toast = Toast.makeText(activity, message, notifierLength);
+    toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
+    TextView textView = new TextView(activity);
+    textView.setBackgroundColor(backgroundColor);
+    textView.setTextColor(textColor);
+>>>>>>> origin/master
     textView.setTextSize(fontsize);
     Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
     textView.setTypeface(typeface);

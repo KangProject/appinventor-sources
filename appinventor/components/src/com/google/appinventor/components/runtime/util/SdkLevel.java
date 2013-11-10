@@ -47,7 +47,10 @@ public class SdkLevel {
   public static final int LEVEL_JELLYBEAN = 16;           // a.k.a. 4.1
   public static final int LEVEL_JELLYBEAN_MR1 = 17;       // a.k.a. 4.2
   public static final int LEVEL_JELLYBEAN_MR2 = 18;       // a.k.a. 4.3 
+<<<<<<< HEAD
 >>>>>>> 071f841625557167ddfa5a78731395c054e03acd
+=======
+>>>>>>> origin/master
 
   private SdkLevel() {
   }
