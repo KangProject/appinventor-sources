@@ -893,18 +893,10 @@ public final class YoungAndroidFormUpgrader {
       srcCompVersion = 2;
     }
     if (srcCompVersion < 3) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      // ShowProgressDialog and HideProgressDialog methods were added. No blocks need to be modified
-      // to upgrade to version 3.
-=======
+
+      // ShowProgressDialog and HideProgressDialog methods were added.
       // The BackgroundColor, NotifierLength, and TextColor options were added.
       // No properties need to be modified to upgrade to version 3.
->>>>>>> 071f841625557167ddfa5a78731395c054e03acd
-=======
-      // The BackgroundColor, NotifierLength, and TextColor options were added.
-      // No properties need to be modified to upgrade to version 3.
->>>>>>> origin/master
       srcCompVersion = 3;
     }
     return srcCompVersion;

@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,15 +77,6 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   // Notifier text color
   private int textColor = Color.WHITE;
 
-  //Length of Notifier message display
-  private int notifierLength = Component.TOAST_LENGTH_LONG;
-
-  // Notifier background color
-  private int backgroundColor = Color.DKGRAY;
-
-  // Notifier text color
-  private int textColor = Color.WHITE;
-
   /**
    * Creates a new Notifier component.
    *
@@ -124,7 +116,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
 
   /**
    * Displays an alert with two buttons that have specified text, and additional button
-   * marked CANCEL if cancelable is set.
+   * marked "Cancelar" if cancelable is set.
    * Raises the AfterChoosing event when the choice has been made, and returns the text of
    * the button that was pressed.
    *
@@ -132,7 +124,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    * @param title the title for the alert box
    * @param button1Text the text on the left-hand button
    * @param button2Text the text on the right-hand button
-   * @param cancelable indicates if additional CANCEL button should be added
+   * @param cancelable indicates if additional "Cancelar" button should be added
    */
   @SimpleFunction
   public void ShowChooseDialog(String message, String title, String button1Text,
@@ -163,7 +155,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
       }
     });
 
-      //If cancelable is true, then a 3rd button, with text of Cancel will be added
+      //If cancelable is true, then a 3rd button, with text of "Cancelar" will be added
       // and will raise AfterChoosing when pressed.
       if (cancelable)  {
             final String cancelButtonText="Cancelar";
@@ -193,8 +185,8 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    * @param message the text in the alert box
    * @param title the title for the alert box
    * @param cancelable indicates whether the user should be able to cancel out of dialog.
-   *                   When true, an additional CANCEL button will be added allowing user to cancel
-   *                   out of dialog. On selection, will raise AfterTextInput with text of CANCEL.
+   *                   When true, an additional "Cancelar" button will be added allowing user to cancel
+   *                   out of dialog. On selection, will raise AfterTextInput with text of "Cancelar".
    */
   @SimpleFunction
   public void ShowTextDialog(String message, String title, boolean cancelable) {
@@ -204,14 +196,14 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   /**
    * Display an alert with a text entry. If cancelable is true, then also displays a "Cancelar"
    * button, allowing user to cancel out of dialog.
-   * Raises the AfterTextInput event when the text has been entered and the user presses "OK".
-   * Raises the AfterTextInput event when users presses "Cancelar", passing CANCEL to AfterTextInput
+   * Raises the AfterTextInput event when the text has been entered and the user presses "Aceptar".
+   * Raises the AfterTextInput event when users presses "Cancelar", passing "Cancelar" to AfterTextInput
    *
    * @param message the text in the alert box
    * @param title the title for the alert box
    * @param cancelable indicates whether the user should be able to cancel out of dialog.
-   *                   When true, an additional CANCEL button will be added allowing user to cancel
-   *                   out of dialog. On selection, will raise AfterTextInput with text of CANCEL.
+   *                   When true, an additional "Cancelar" button will be added allowing user to cancel
+   *                   out of dialog. On selection, will raise AfterTextInput with text of "Cancelar".
    */
   private void textInputAlert(String message, String title, boolean cancelable) {
     final AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
@@ -229,13 +221,13 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
       }
     });
 
-      //If cancelable, then add the CANCEL button
+      //If cancelable, then add the "Cancelar" button
       if (cancelable)  {
           final String cancelButtonText="Cancelar";
           alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, cancelButtonText,
               new DialogInterface.OnClickListener() {
                   public void onClick(DialogInterface dialog, int which) {
-                      //User pressed CANCEL. Raise AfterTextInput with CANCEL
+                      //User pressed "Cancelar". Raise AfterTextInput with "Cancelar"
                       AfterTextInput(cancelButtonText);
                   }
               });
@@ -329,28 +321,15 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     // I (hal) can't figure it out.
     int fontsize = (SdkLevel.getLevel() >= SdkLevel.LEVEL_ICE_CREAM_SANDWICH)
         ? 22 : 15;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
-    TextView textView = new TextView(activity);
-    textView.setTextColor(Color.WHITE);
-=======
     Toast toast = Toast.makeText(activity, message, notifierLength);
     toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
     TextView textView = new TextView(activity);
     textView.setBackgroundColor(backgroundColor);
     textView.setTextColor(textColor);
->>>>>>> 071f841625557167ddfa5a78731395c054e03acd
-=======
-    Toast toast = Toast.makeText(activity, message, notifierLength);
-    toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
-    TextView textView = new TextView(activity);
-    textView.setBackgroundColor(backgroundColor);
-    textView.setTextColor(textColor);
->>>>>>> origin/master
     textView.setTextSize(fontsize);
     Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
     textView.setTypeface(typeface);
+    textView.setPadding(10, 10, 10, 10);
     textView.setText(message);
     toast.setView(textView);
     toast.show();
@@ -384,8 +363,8 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   @SimpleFunction
   public void LogInfo(String message) {
     Log.i(LOG_TAG, message);
-    
   }
+
   /**
    * Adds the option to launch a box as a load/connect or search.
    * You can select the text of the title and the message.

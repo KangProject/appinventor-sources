@@ -529,21 +529,12 @@ public class BlockSaveFile {
       // The AccelerometerSensor.MinimumInterval property was added.
       // No blocks need to be modified to upgrade to version 2.
       blkCompVersion = 2;
-<<<<<<< HEAD
     }
     if (blkCompVersion < 3) {
       // The AccelerometerSensor.Sensitivity property was added.
       // No blocks need to be modified to upgrade to version 3.
       blkCompVersion = 3;
     }
-=======
-    }
-    if (blkCompVersion < 3) {
-      // The AccelerometerSensor.Sensitivity property was added.
-      // No blocks need to be modified to upgrade to version 3.
-      blkCompVersion = 3;
-    }
->>>>>>> origin/master
     return blkCompVersion;
   }
 
@@ -1131,18 +1122,9 @@ public class BlockSaveFile {
       blkCompVersion = 2;
     }
     if (blkCompVersion < 3) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      // ShowProgressDialog and HideProgressDialog methods were added. No blocks need to be modified
-      // to upgrade to version 3.
-=======
+      // ShowProgressDialog and HideProgressDialog methods were added.
       // The BackgroundColor, TextColor, and NotifierLength options were added.
       // Defaults are set, so no blocks need to be modified to upgrade to version 3.
->>>>>>> 071f841625557167ddfa5a78731395c054e03acd
-=======
-      // The BackgroundColor, TextColor, and NotifierLength options were added.
-      // Defaults are set, so no blocks need to be modified to upgrade to version 3.
->>>>>>> origin/master
       blkCompVersion = 3;
     }
     return blkCompVersion;
