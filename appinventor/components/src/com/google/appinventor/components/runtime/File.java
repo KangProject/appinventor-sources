@@ -25,13 +25,16 @@ import java.io.InputStream;
  *
  */
 @DesignerComponent(version = YaVersion.FILE_COMPONENT_VERSION,
-    description = "Non-visible component for manipulating files on the pnohe.",
+    description = "Non-visible component for manipulating files on the phone.",
     category = ComponentCategory.STORAGE,
     nonVisible = true,
-    iconName = "images/tinyDB.png")
+    iconName = "images/file.png")
 @SimpleObject
+@UsesPermissions(permissionNames =
+                "android.permission.WRITE_EXTERNAL_STORAGE," +
+                "android.permission.READ_EXTERNAL_STORAGE")
 public class File extends AndroidNonvisibleComponent implements Component {
-		// the filename set by the user
+        // the filename set by the user
         private String filename;
         /**
    * Creates a new File component.
