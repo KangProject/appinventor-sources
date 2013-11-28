@@ -320,12 +320,6 @@ public interface Images extends Resources {
   ImageResource tinyDB();
 
   /**
-   * Designer palette item: TinyWebDB Component
-   */
-  @Source("com/google/appinventor/images/tinyWebDB.png")
-  ImageResource tinyWebDB();
-
-  /**
    * Designer palette item: TextToSpeech component
    */
   @Source("com/google/appinventor/images/textToSpeech.png")

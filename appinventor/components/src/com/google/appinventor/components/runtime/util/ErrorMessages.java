@@ -142,9 +142,7 @@ public final class ErrorMessages {
   //AccelerometerSensor Errors
   public static final int ERROR_BAD_VALUE_FOR_ACCELEROMETER_SENSITIVITY = 1901;
   //File Errors
-  public static final int ERROR_UNABLE_TO_WRITE_TO_FILE = 2001;
-  public static final int ERROR_UNABLE_TO_READ_FROM_FILE = 2002;
-  public static final int ERROR_UNABLE_TO_DELETE_FILE = 2003;
+  public static final int ERROR_UNABLE_TO_LOAD_MEDIA = 2001;
 
   // Please start the next group of error numbers at 2101.
 
@@ -381,12 +379,8 @@ public final class ErrorMessages {
        "The value -- %s -- provided for AccelerometerSensor's sensitivity was bad. " +
        "The only legal values are 1, 2, or 3.");
     // File errors
-    errorMessages.put(ERROR_UNABLE_TO_WRITE_TO_FILE,
-      "Couldn't write file %s");
-    errorMessages.put(ERROR_UNABLE_TO_READ_FROM_FILE,
-      "Couldn't read file %s");
-    errorMessages.put(ERROR_UNABLE_TO_DELETE_FILE,
-      "Couldn't delete file %s");
+    errorMessages.put(ERROR_UNABLE_TO_LOAD_MEDIA,
+      "Couldn't load file %s");
   }
 
   private ErrorMessages() {
