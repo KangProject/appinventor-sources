@@ -6,6 +6,7 @@ import com.google.appinventor.components.annotations.PropertyCategory;
 import com.google.appinventor.components.annotations.SimpleFunction;
 import com.google.appinventor.components.annotations.SimpleObject;
 import com.google.appinventor.components.annotations.SimpleProperty;
+import com.google.appinventor.components.annotations.UsesPermissions;
 import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.PropertyTypeConstants;
 import com.google.appinventor.components.common.YaVersion;
@@ -31,10 +32,10 @@ import java.io.IOException;
     category = ComponentCategory.STORAGE,
     nonVisible = true,
     iconName = "images/file.png")
-@UsesPermissions(permissionNames =
-        "android.permission.WRITE_EXTERNAL_STORAGE," +
-        "android.permission.READ_EXTERNAL_STORAGE")
 @SimpleObject
+@UsesPermissions(permissionNames =
+                 "android.permission.READ_EXTERNAL_STORAGE," +
+                 "android.permission.WRITE_EXTERNAL_STORAGE")
 public class File extends AndroidNonvisibleComponent implements Component {
                 
   /**

@@ -376,6 +376,10 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     ProgressDialog.show(activity, title, message, true, cancelable);
   }
 
+  /**
+   * Hides the ProgressDialog launched previously.
+   * @author xcitizen.team@gmail.com (José Mª Martín)
+   */
   @SimpleFunction
   public void HideProgressDialog() {
     progressDialog.dismiss();

@@ -115,12 +115,6 @@ public interface Images extends Resources {
   ImageResource checkbox();
 
   /**
-   * Designer palette item: file component
-   */
-  @Source("com/google/appinventor/images/file.png")
-  ImageResource file();
-
-  /**
    * Designer palette item: form component
    */
   @Source("com/google/appinventor/images/form.png")
@@ -318,6 +312,18 @@ public interface Images extends Resources {
    */
   @Source("com/google/appinventor/images/tinyDB.png")
   ImageResource tinyDB();
+
+  /**
+   * Designer palette item: File Component
+   */
+  @Source("com/google/appinventor/images/file.png")
+  ImageResource file();
+
+  /**
+   * Designer palette item: TinyWebDB Component
+   */
+  @Source("com/google/appinventor/images/tinyWebDB.png")
+  ImageResource tinyWebDB();
 
   /**
    * Designer palette item: TextToSpeech component

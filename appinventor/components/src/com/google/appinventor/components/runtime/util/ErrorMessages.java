@@ -141,10 +141,8 @@ public final class ErrorMessages {
   public static final int ERROR_REPL_SECURITY_ERROR = 1801;
   //AccelerometerSensor Errors
   public static final int ERROR_BAD_VALUE_FOR_ACCELEROMETER_SENSITIVITY = 1901;
-  //File Errors
-  public static final int ERROR_UNABLE_TO_LOAD_MEDIA = 2001;
 
-  // Please start the next group of error numbers at 2101.
+  // Please start the next group of error numbers at 2001.
 
   // Mapping of error numbers to error message format strings.
   private static final Map<Integer, String> errorMessages;
@@ -378,9 +376,6 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_BAD_VALUE_FOR_ACCELEROMETER_SENSITIVITY,
        "The value -- %s -- provided for AccelerometerSensor's sensitivity was bad. " +
        "The only legal values are 1, 2, or 3.");
-    // File errors
-    errorMessages.put(ERROR_UNABLE_TO_LOAD_MEDIA,
-      "Couldn't load file %s");
   }
 
   private ErrorMessages() {

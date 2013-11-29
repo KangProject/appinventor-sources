@@ -84,6 +84,11 @@ implements OnStopListener, OnResumeListener, OnPauseListener, OnNewIntentListene
     EventDispatcher.dispatchEvent(this, "TagRead", message);
   }
 
+  /**
+   * Indicates that a new tag has been written.
+   * Currently this is only a plain text tag, as specified in the
+   * manifest.
+   */
   @SimpleEvent
   public void TagWritten() {
     Log.d(TAG, "Tag written: " + textToWrite);
