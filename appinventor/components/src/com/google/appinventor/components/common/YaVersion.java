@@ -440,6 +440,7 @@ public class YaVersion {
   // - OpenScreenAnimation and CloseScreenAnimation are now properties.
   // For FORM_COMPONENT_VERSION 12:
   // - AboutScreen property was added
+  // - Theme property was added
   public static final int FORM_COMPONENT_VERSION = 12;
 
   // For FUSIONTABLESCONTROL_COMPONENT_VERSION 2:

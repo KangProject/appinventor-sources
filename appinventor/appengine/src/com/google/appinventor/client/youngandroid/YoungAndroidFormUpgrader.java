@@ -636,7 +636,6 @@ public final class YoungAndroidFormUpgrader {
       // to update to version 7.
       srcCompVersion = 7;
     }
-
     if (srcCompVersion < 8) {
       // The AlignHorizontal and AlignVertical properties were added. No blocks need to be modified
       // to upgrade to version 8.
@@ -657,6 +656,8 @@ public final class YoungAndroidFormUpgrader {
     }
     if (srcCompVersion < 12) {
       // The AboutScreen property was added.
+      // The Theme property was added. No properties need to be modified
+      // to update to version 12.
       srcCompVersion = 12;
     }
     return srcCompVersion;
