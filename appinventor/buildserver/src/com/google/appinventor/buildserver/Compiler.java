@@ -317,6 +317,7 @@ public final class Compiler {
       out.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
       out.write("<manifest " +
           "xmlns:android=\"http://schemas.android.com/apk/res/android\" " +
+          "android:installLocation=\"auto\" " +
           "package=\"" + packageName + "\" " +
           "android:versionCode=\"" + vCode +"\" " + "android:versionName=\"" + vName + "\" " +
           ">\n");
@@ -347,7 +348,10 @@ public final class Compiler {
       // the specified SDK version.  We might also want to allow users to specify minSdkVersion
       // or have us specify higher SDK versions when the program uses a component that uses
       // features from a later SDK (e.g. Bluetooth).
-      out.write("  <uses-sdk android:minSdkVersion=\"3\" />\n");
+      out.write("  <uses-sdk android:targetSdkVersion=\"19\" android:minSdkVersion=\"14\"/>\n");
+
+      // Screen supporting
+      out.write("  <supports-screens android:resizeable=\"true\" android:smallScreens=\"true\" android:normalScreens=\"true\" android:largeScreens=\"true\" android:anyDensity=\"false\"/>\n");
 
       // If we set the targetSdkVersion to 4, we can run full size apps on tablets.
       // On non-tablet hi-res devices like a Nexus One, the screen dimensions will be the actual
@@ -357,8 +361,6 @@ public final class Compiler {
       // much smaller than they should be. There is code in Canvas and ImageSprite to work around
       // this problem, but images and buttons are still an unsolved problem. We'll have to solve
       // that before we can set the targetSdkVersion to 4 here.
-      // out.write("  <uses-sdk android:targetSdkVersion=\"4\" />\n");
-
       out.write("  <application ");
 
       // TODO(markf): The preparing to publish doc at
@@ -428,7 +430,8 @@ public final class Compiler {
       // ListPickerActivity
       out.write("    <activity android:name=\"" + LIST_ACTIVITY_CLASS + "\" " +
           "android:configChanges=\"orientation|keyboardHidden\" " +
-          "android:screenOrientation=\"behind\">\n");
+          "android:screenOrientation=\"behind\" " +
+          "android:theme=\"@android:style/Theme.Holo.Light.Dialog\">\n");
       out.write("    </activity>\n");
       // WebViewActivity
       out.write("    <activity android:name=\"" + WEBVIEW_ACTIVITY_CLASS + "\" " +
