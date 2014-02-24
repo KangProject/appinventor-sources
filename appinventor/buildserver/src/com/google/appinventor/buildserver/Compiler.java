@@ -92,7 +92,7 @@ public final class Compiler {
 
   private static final String DEFAULT_VERSION_CODE = "1";
   private static final String DEFAULT_VERSION_NAME = "1.0";
-  private static final String DEFAULT_THEME = "Theme";
+  private static final String DEFAULT_THEME = "Theme.Holo";
 
   private static final String COMPONENT_BUILD_INFO =
       RUNTIME_FILES_DIR + "simple_components_build_info.json";

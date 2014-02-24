@@ -431,7 +431,7 @@ public final class MockForm extends MockContainer {
   private void setThemeProperty(String theme) {
     // The Theme property actually applies to the application and is only visible on Screen1.
     // When we load a form that is not Screen1, this method will be called with the default value
-    // for Theme (Theme). We need to ignore that.
+    // for Theme (Theme.Holo). We need to ignore that.
     if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,

@@ -730,17 +730,21 @@ public interface OdeMessages extends Messages {
 
   // Used in editor/youngandroid/properties/YoungAndroidThemeChoicePropertyEditor.java
 
-  @DefaultMessage("Default theme")
-  @Description("Text for theme choice 'Default theme '")
-  String defaultTheme();
+  @DefaultMessage("Holo Dark")
+  @Description("Text for theme choice 'Holo Dark '")
+  String holoDarkTheme();
 
-  @DefaultMessage("NoTitleBar")
-  @Description("Text for theme choice 'NoTitleBar '")
-  String noTitleBarTheme();
+  @DefaultMessage("Holo Dark (fullscreen)")
+  @Description("Text for theme choice 'Holo Dark (fullscreen) '")
+  String holoDarkFullscreenTheme();
 
-  @DefaultMessage("Fullscreen")
-  @Description("Text for theme choice 'Fullscreen '")
-  String fullscreenTheme();
+  @DefaultMessage("Holo Light")
+  @Description("Text for theme choice 'Holo Light '")
+  String holoLightTheme();
+
+  @DefaultMessage("Holo Light (fullscreen)")
+  @Description("Text for theme choice 'Holo Light (fullscreen) '")
+  String holoLightFullscreenTheme();
 
   // Used in explorer/SourceStructureExplorer.java
 

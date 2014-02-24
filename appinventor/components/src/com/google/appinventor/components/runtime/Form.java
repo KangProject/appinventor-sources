@@ -1014,7 +1014,7 @@ public class Form extends Activity
    * @param theme the theme of the application
    */
   @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_THEME,
-      defaultValue = "Theme")
+      defaultValue = "Theme.Holo")
   @SimpleProperty(userVisible = false)
   public void Theme(String theme) {
     // We don't actually need to do anything.
