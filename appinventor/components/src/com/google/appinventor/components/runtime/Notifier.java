@@ -169,7 +169,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
         cancelable,
         new Runnable() {public void run() {AfterChoosing(button1Text);}},
         new Runnable() {public void run() {AfterChoosing(button2Text);}},
-        new Runnable() {public void run() {AfterChoosing("Cancel");}}
+        new Runnable() {public void run() {AfterChoosing("Cancelar");}}
         );
   }
 

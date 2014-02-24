@@ -30,9 +30,6 @@ import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
@@ -109,10 +106,6 @@ public class Form extends Activity
 
   // Backing for background color
   private int backgroundColor;
-
-  // Information string the app creator can set.  It will be shown when
-  // "about this application" menu item is selected.
-  private String aboutScreen;
 
   private String backgroundImagePath = "";
   private Drawable backgroundDrawable;
@@ -200,7 +193,6 @@ public class Form extends Activity
   private void defaultPropertyValues() {
     Scrollable(true); // frameLayout is created in Scrollable()
     BackgroundImage("");
-    AboutScreen("");
     BackgroundColor(Component.COLOR_WHITE);
     AlignHorizontal(ComponentConstants.GRAVITY_LEFT);
     AlignVertical(ComponentConstants.GRAVITY_TOP);
@@ -700,33 +692,6 @@ public class Form extends Activity
   @SimpleProperty
   public void Title(String title) {
     setTitle(title);
-  }
-
-
-  /**
-   * AboutScreen property getter method.
-   *
-   * @return  AboutScreen string
-   */
-  @SimpleProperty(category = PropertyCategory.APPEARANCE,
-      description = "Information about the screen.  It appears when \"About this Application\" "
-      + "is selected from the system menu. Use it to inform people about your app.  In multiple "
-      + "screen apps, each screen has its own AboutScreen info.")
-  public String AboutScreen() {
-    return aboutScreen;
-  }
-
-  /**
-   * AboutScreen property setter method: sets a new aboutApp string for the form in the
-   * form's "About this application" menu.
-   *
-   * @param title  new form caption
-   */
-  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_TEXTAREA,
-      defaultValue = "")
-  @SimpleProperty
-  public void AboutScreen(String aboutScreen) {
-    this.aboutScreen = aboutScreen;
   }
 
   /**
@@ -1269,10 +1234,6 @@ public class Form extends Activity
     closeApplication();
   }
 
-  private void closeApplicationFromMenu() {
-    closeApplication();
-  }
-
   private void closeApplication() {
     // In a multi-screen application, only Screen1 can successfully call System.exit(0). Here, we
     // set applicationIsBeingClosed to true. If this is not Screen1, when we call finish() below,
@@ -1291,75 +1252,6 @@ public class Form extends Activity
       // mean that the only way to restart that service) is to reboot but that's a long way off.
       System.exit(0);
     }
-  }
-
-  // Configure the system menu to include items to kill the application and to show "about"
-  // information
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // This procedure is called only once.  To change the items dynamically
-    // we would use onPrepareOptionsMenu.
-    super.onCreateOptionsMenu(menu);
-    // add the menu items
-    // Comment out the next line if we don't want the exit button
-    addExitButtonToMenu(menu);
-    addAboutInfoToMenu(menu);
-    return true;
-  }
-
-  public void addExitButtonToMenu(Menu menu) {
-    MenuItem stopApplicationItem = menu.add(Menu.NONE, Menu.NONE, Menu.FIRST,
-    "Stop this application")
-    .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-      public boolean onMenuItemClick(MenuItem item) {
-        showExitApplicationNotification();
-        return true;
-      }
-    });
-    stopApplicationItem.setIcon(android.R.drawable.ic_notification_clear_all);
-  }
-
-  public void addAboutInfoToMenu(Menu menu) {
-    MenuItem aboutAppItem = menu.add(Menu.NONE, Menu.NONE, 2,
-    "About this application")
-    .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-      public boolean onMenuItemClick(MenuItem item) {
-        showAboutApplicationNotification();
-        return true;
-      }
-    });
-    aboutAppItem.setIcon(android.R.drawable.sym_def_app_icon);
-  }
-
-  private void showExitApplicationNotification() {
-    String title = "Stop application?";
-    String message = "Stop this application and exit? You'll need to relaunch " +
-        "the application to use it again.";
-    String positiveButton = "Stop and exit";
-    String negativeButton = "Don't stop";
-    // These runnables are passed to twoButtonAlert.  They perform the corresponding actions
-    // when the button is pressed.   Here there's nothing to do for "don't stop" and cancel
-    Runnable stopApplication = new Runnable() {public void run () {closeApplicationFromMenu();}};
-    Runnable doNothing = new Runnable () {public void run() {}};
-    Notifier.twoButtonDialog(
-        this,
-        message,
-        title,
-        positiveButton,
-        negativeButton,
-        false, // cancelable is false
-        stopApplication,
-        doNothing,
-        doNothing);
-  }
-
-  private void showAboutApplicationNotification() {
-    String title = "About This App";
-    String tagline = "<p><small><em>Invented with MIT App Inventor<br>appinventor.mit.edu</em></small>";
-    String message = aboutScreen + tagline;
-    String buttonText ="Got it";
-    Notifier.oneButtonAlert(this, message, title, buttonText);
   }
 
   // This is called from clear-current-form in runtime.scm.
