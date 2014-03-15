@@ -328,13 +328,7 @@ public class ProjectServiceImpl extends OdeRemoteServiceServlet implements Proje
   }
 
   private UserProject makeUserProject(String userId, long projectId) {
-    // TODO(user): note that multiple calls like this on the data store
-    // can be really inefficient. Make a storagIo.getProject() method to get
-    // all of this at once?
-    return new UserProject(projectId, storageIo.getProjectName(userId, projectId),
-                           storageIo.getProjectType(userId, projectId),
-                           storageIo.getProjectDateCreated(userId, projectId),
-                           storageIo.getProjectDateModified(userId, projectId));
+    return storageIo.getUserProject(userId, projectId);
   }
 
   /*
@@ -343,7 +337,7 @@ public class ProjectServiceImpl extends OdeRemoteServiceServlet implements Proje
   private CommonProjectService getProjectRpcImpl(final String userId, long projectId) {
     String projectType = storageIo.getProjectType(userId, projectId);
     if (!projectType.isEmpty()) {
-      return getProjectRpcImpl(userId, storageIo.getProjectType(userId, projectId));
+      return getProjectRpcImpl(userId, projectType);
     } else {
       throw CrashReport.createAndLogError(LOG, getThreadLocalRequest(),
           "user=" + userId + ", project=" + projectId,
