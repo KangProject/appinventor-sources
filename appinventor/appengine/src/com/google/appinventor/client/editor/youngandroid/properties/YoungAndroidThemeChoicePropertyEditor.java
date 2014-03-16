@@ -16,9 +16,9 @@ import com.google.appinventor.client.widgets.properties.ChoicePropertyEditor;
 
   // Theme choices
   private static final Choice[] themes = new Choice[] {
-    new Choice(MESSAGES.holoDarkTheme(), "Theme.Holo"),
+    new Choice(MESSAGES.holoDarkTheme(), "Theme.Holo.NoActionBar"),
     new Choice(MESSAGES.holoDarkFullscreenTheme(), "Theme.Holo.NoActionBar.Fullscreen"),
-    new Choice(MESSAGES.holoLightTheme() , "Theme.Holo.Light"),
+    new Choice(MESSAGES.holoLightTheme() , "Theme.Holo.Light.NoActionBar"),
     new Choice(MESSAGES.holoLightFullscreenTheme(), "Theme.Holo.Light.NoActionBar.Fullscreen"),
   };
 
