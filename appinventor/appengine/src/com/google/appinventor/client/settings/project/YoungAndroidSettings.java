@@ -39,7 +39,7 @@ public final class YoungAndroidSettings extends Settings {
         SettingsConstants.YOUNG_ANDROID_SETTINGS_USES_LOCATION, "false",
         EditableProperty.TYPE_INVISIBLE));
     addProperty(new EditableProperty(this,
-        SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME, "Theme.Holo",
+        SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME, "Theme.Holo.NoActionBar",
         EditableProperty.TYPE_INVISIBLE));
   }
 }

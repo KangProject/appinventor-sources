@@ -296,7 +296,7 @@ public final class YoungAndroidProjectService extends CommonProjectService {
     project.addTextFile(new TextFile(yailFileName, yailFileContents));
 
     // Create new project
-    return storageIo.createProject(userId, project, getProjectSettings("", "1", "1.0", "false", "Theme.Holo"));
+    return storageIo.createProject(userId, project, getProjectSettings("", "1", "1.0", "false", "Theme.Holo.NoActionBar"));
   }
 
   @Override
