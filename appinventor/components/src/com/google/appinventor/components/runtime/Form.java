@@ -31,6 +31,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
 
@@ -178,6 +179,13 @@ public class Form extends Activity
     }
 
     fullScreenVideoUtil = new FullScreenVideoUtil(this, androidUIHandler);
+
+    // Set soft keyboard to not cover the focused UI element, e.g., when you are typing
+    // into a textbox near the bottom of the screen.
+    WindowManager.LayoutParams params = getWindow().getAttributes();
+    int softInputMode = params.softInputMode;
+    getWindow().setSoftInputMode(
+        softInputMode | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
     // Add application components to the form
     $define();

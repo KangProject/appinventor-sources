@@ -19,7 +19,9 @@ import com.google.appinventor.client.boxes.ViewerBox;
 import com.google.appinventor.client.editor.EditorManager;
 import com.google.appinventor.client.editor.FileEditor;
 import com.google.appinventor.client.editor.youngandroid.BlocklyPanel;
+import com.google.appinventor.client.explorer.commands.ChainableCommand;
 import com.google.appinventor.client.explorer.commands.CommandRegistry;
+import com.google.appinventor.client.explorer.commands.SaveAllEditorsCommand;
 import com.google.appinventor.client.explorer.project.Project;
 import com.google.appinventor.client.explorer.project.ProjectChangeAdapter;
 import com.google.appinventor.client.explorer.project.ProjectManager;
@@ -193,6 +195,8 @@ public class Ode implements EntryPoint {
   private final GetMotdServiceAsync getMotdService = GWT.create(GetMotdService.class);
 
   private boolean windowClosing;
+
+  private boolean screensLocked;
 
   /**
    * Returns global instance of Ode.
@@ -1191,6 +1195,165 @@ public class Ode implements EntryPoint {
   }
 
   /**
+   * Show a Warning Dialog box when another login session has been
+   * created. The user is then given two choices. They can either
+   * close this session of App Inventor, which will close the current
+   * window, or they can click "Take Over" which will reload this
+   * window effectively making it the latest login and invalidating
+   * all other sessions.
+   *
+   * We are called from OdeAsyncCallback when we detect that our
+   * session has been invalidated.
+   */
+  public void invalidSessionDialog() {
+    // Create the UI elements of the DialogBox
+    final DialogBox dialogBox = new DialogBox(false, true); // DialogBox(autohide, modal)
+    dialogBox.setStylePrimaryName("ode-DialogBox");
+    dialogBox.setText("This Session Is Out of Date");
+    dialogBox.setHeight("200px");
+    dialogBox.setWidth("800px");
+    dialogBox.setGlassEnabled(true);
+    dialogBox.setAnimationEnabled(true);
+    dialogBox.center();
+    VerticalPanel DialogBoxContents = new VerticalPanel();
+    HTML message = new HTML("<p><font color=red>Warning:</font> This session is out of date.</p>" +
+        "<p>This App Inventor account has been opened from another location. " +
+        "Using a single account from more than one location at the same time " +
+        "can damage your projects.</p>" +
+        "<p>Choose one of the buttons below to:" +
+        "<ul>" +
+        "<li>End this session here.</li>" +
+        "<li>Make this the current session and make the other sessions out of date.</li>" +
+        "<li>Continue with both sessions.</li>" +
+        "</ul>" +
+        "</p>");
+    message.setStyleName("DialogBox-message");
+    FlowPanel holder = new FlowPanel();
+    Button closeSession = new Button("End This Session");
+    closeSession.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+          dialogBox.hide();
+          finalDialog();
+        }
+      });
+    holder.add(closeSession);
+    Button reloadSession = new Button("Make this the current session");
+    reloadSession.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+          dialogBox.hide();
+          reloadWindow();
+        }
+      });
+    holder.add(reloadSession);
+    Button continueSession = new Button("Continue with Both Sessions");
+    continueSession.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+          dialogBox.hide();
+          bashWarningDialog();
+        }
+      });
+    holder.add(continueSession);
+    DialogBoxContents.add(message);
+    DialogBoxContents.add(holder);
+    dialogBox.setWidget(DialogBoxContents);
+    dialogBox.show();
+  }
+
+  /**
+   * The user has chosen to continue a session even though
+   * others are still active. This risks damaging (bashing) projects.
+   * So before we proceed, we provide a stern warning. If they press
+   * "Continue" we set their sessionId to "force" which is recognized
+   * by the backend as a sessionId that should always match. This is
+   * safe because normal sessionIds are UUIDs which are always longer
+   * then the word "force." I know this is a bit kludgey, but by doing
+   * it this way we don't have to change the RPC interface which makes
+   * releasing this code non-disruptive to people using App Inventor
+   * during the release.
+   *
+   * If the user selects "Cancel" we take them back to the
+   * invalidSessionDialog.
+   */
+
+  private void bashWarningDialog() {
+    // Create the UI elements of the DialogBox
+    final DialogBox dialogBox = new DialogBox(false, true); // DialogBox(autohide, modal)
+    dialogBox.setStylePrimaryName("ode-DialogBox");
+    dialogBox.setText("Do you want to continue with multiple sessions?");
+    dialogBox.setHeight("200px");
+    dialogBox.setWidth("800px");
+    dialogBox.setGlassEnabled(true);
+    dialogBox.setAnimationEnabled(true);
+    dialogBox.center();
+    VerticalPanel DialogBoxContents = new VerticalPanel();
+    HTML message = new HTML("<p><font color=red>WARNING:</font> A second App " +
+        "Inventor session has been opened for this account. You may choose to " +
+        "continue with both sessions, but working with App Inventor from more " +
+        "than one session simultaneously can cause blocks to be lost in ways " +
+        "that cannot be recovered from the App Inventor server.</p><p>" +
+        "We recommend that people not open multiple sessions on the same " +
+        "account. But if you do need to work in this way, then you should " +
+        "regularly export your project to your local computer, so you will " +
+        "have a backup copy independent of the App Inventor server. Use " +
+        "\"Export\" from the Projects menu to export the project.</p>");
+    message.setStyleName("DialogBox-message");
+    FlowPanel holder = new FlowPanel();
+    Button continueSession = new Button("Continue with Multiple Sessions");
+    continueSession.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+          dialogBox.hide();
+          sessionId = "force";  // OK, over-ride in place!
+          // Because we ultimately got here from a failure in the save function...
+          ChainableCommand cmd = new SaveAllEditorsCommand(null);
+          cmd.startExecuteChain(Tracking.PROJECT_ACTION_SAVE_YA, getCurrentYoungAndroidProjectRootNode());
+          // Will now go back to our regularly scheduled main loop
+        }
+      });
+    holder.add(continueSession);
+    Button cancelSession = new Button("Do not use multiple Sessions");
+    cancelSession.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+          dialogBox.hide();
+          invalidSessionDialog();
+        }
+      });
+    holder.add(cancelSession);
+    DialogBoxContents.add(message);
+    DialogBoxContents.add(holder);
+    dialogBox.setWidget(DialogBoxContents);
+    dialogBox.show();
+  }
+
+  /**
+   * The "Final" Dialog box. When a user chooses to end their session
+   * due to a conflicting login, we should show this dialog which is modal
+   * and has no exit! My preference would have been to close the window
+   * altogether, but the browsers won't let javascript code close windows
+   * that it didn't open itself (like the main window). I also tried to
+   * use document.write() to write replacement HTML but that caused errors
+   * in Firefox and strange behavior in Chrome. So we do this...
+   *
+   * We are called from invalidSessionDialog() (above).
+   */
+  private void finalDialog() {
+    // Create the UI elements of the DialogBox
+    final DialogBox dialogBox = new DialogBox(false, true); // DialogBox(autohide, modal)
+    dialogBox.setStylePrimaryName("ode-DialogBox");
+    dialogBox.setText("Your Session is Finished");
+    dialogBox.setHeight("100px");
+    dialogBox.setWidth("400px");
+    dialogBox.setGlassEnabled(true);
+    dialogBox.setAnimationEnabled(true);
+    dialogBox.center();
+    VerticalPanel DialogBoxContents = new VerticalPanel();
+    HTML message = new HTML("<p><b>Your Session is now ended, you may close this window</b></p>");
+    message.setStyleName("DialogBox-message");
+    DialogBoxContents.add(message);
+    dialogBox.setWidget(DialogBoxContents);
+    dialogBox.show();
+  }
+
+  /**
    * generateNonce() -- Generate a unique String value
    * this value is used to reference a built APK without
    * requiring explicit authentication.
@@ -1216,6 +1379,26 @@ public class Ode implements EntryPoint {
     return nonce;
   }
 
+  // Code to lock out certain screen and project switching code
+  // These are locked out while files are being saved
+  // lockScreens(true) is called from EditorManager when it
+  // is about to call saveDirtyEditors() and then cleared
+  // in the afterSaving command called when saveDirtyEditors
+  // is finished.
+
+  public boolean screensLocked() {
+    return screensLocked;
+  }
+
+  public void lockScreens(boolean value) {
+    if (value) {
+      OdeLog.log("Locking Screens");
+    } else {
+      OdeLog.log("Unlocking Screens");
+    }
+    screensLocked = value;
+  }
+
   // Native code to open a new window (or tab) to display the
   // desired survey. The value below "http://web.mit.edu" is just
   // a plug value. You should insert your own as appropriate.
@@ -1229,6 +1412,10 @@ public class Ode implements EntryPoint {
       var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
       return v.toString(16);
      });
+  }-*/;
+
+  private static native void reloadWindow() /*-{
+    top.location.reload();
   }-*/;
 
 }
