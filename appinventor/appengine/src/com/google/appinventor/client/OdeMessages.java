@@ -606,6 +606,14 @@ public interface OdeMessages extends Messages {
   @Description("Text for color choice 'Light Gray'")
   String lightGrayColor();
 
+  @DefaultMessage("Holo Blue")
+  @Description("Text for color choice 'Holo Blue'")
+  String holoBlueColor();
+
+  @DefaultMessage("Holo Dark Blue")
+  @Description("Text for color choice 'Holo Dark Blue'")
+  String holoDarkBlueColor();
+
   @DefaultMessage("Magenta")
   @Description("Text for color choice 'Magenta'")
   String magentaColor();
