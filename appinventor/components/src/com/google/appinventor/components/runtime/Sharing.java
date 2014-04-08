@@ -43,7 +43,7 @@ public class Sharing extends AndroidNonvisibleComponent {
     shareIntent.setType("text/plain");
 
     Context cont = this.form.$context();
-    cont.startActivity(Intent.createChooser(shareIntent,  "Send using..."));
+    cont.startActivity(Intent.createChooser(shareIntent,  "Elegir una acción..."));
   }
 
   /**
