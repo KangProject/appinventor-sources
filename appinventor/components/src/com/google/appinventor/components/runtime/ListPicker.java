@@ -228,8 +228,6 @@ public class ListPicker extends Picker implements ActivityResultListener, Delete
     intent.putExtra(LIST_ACTIVITY_SHOW_SEARCH_BAR, String.valueOf(showFilter)); //convert to string
     if (!title.equals("")) {
       intent.putExtra(LIST_ACTIVITY_TITLE, title);
-	} else {
-	  requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
     // Get the current Form's opening transition anim type,
     // and pass it to the list picker activity. For consistency,
