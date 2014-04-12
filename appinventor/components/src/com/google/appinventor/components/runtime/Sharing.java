@@ -22,8 +22,11 @@ import java.io.File;
  * and fixed file support.
  */
 @DesignerComponent(version = YaVersion.SHARING_COMPONENT_VERSION,
-    description ="A non-visible component that enables sharing files and/or " +
-        "messages through Android's built-in sharing.",
+    description ="Sharing is a non-visible component that enables sharing files and/or " +
+        "messages between your app and other apps installed on a device. The component " +
+        "will display a list of the installed apps that can handle the information provided, " +
+        " and will allow the user to choose one to share the content with, for instance a " +
+        "mail app, a social network app, a texting app, and so on.",
     category = ComponentCategory.SOCIAL,
     nonVisible = true, iconName = "images/sharing.png")
 public class Sharing extends AndroidNonvisibleComponent {
@@ -35,8 +38,10 @@ public class Sharing extends AndroidNonvisibleComponent {
   /**
    * Shares a message using Android' built-in sharing.
    */
-  @SimpleFunction(description = "Shares a message through any capable" +
-      "application installed on the phone.")
+  @SimpleFunction(description = "Shares a message through any capable " +
+      "application installed on the phone by displaying a list of the available apps and " +
+      "allowing the user to choose one from the list. The selected app will open with the " +
+      "message inserted on it.")
   public void ShareMessage(String message) {
     Intent shareIntent = new Intent(Intent.ACTION_SEND);
     shareIntent.putExtra(Intent.EXTRA_TEXT, message);
@@ -50,7 +55,8 @@ public class Sharing extends AndroidNonvisibleComponent {
    * Shares a file using Android' built-in sharing.
    */
   @SimpleFunction(description = "Shares a file through any capable application "
-      + "installed on the phone.")
+      + "installed on the phone by displaying a list of the available apps and allowing the " +
+      "user to choose one from the list. The selected app will open with the file inserted on it.")
   public void ShareFile(String file) {
     ShareFileWithMessage(file, "");
   }
@@ -58,8 +64,9 @@ public class Sharing extends AndroidNonvisibleComponent {
   /**
    * Shares a file along with a message using Android' built-in sharing.
    */
-  @SimpleFunction(description = "Shares a file through any capable application "
-      + "installed on the phone, along with a message.")
+  @SimpleFunction(description = "Shares both a file and a message through any capable application "
+      + "installed on the phone by displaying a list of available apps and allowing the user to " +
+      " choose one from the list. The selected app will open with the file and message inserted on it.")
   public void ShareFileWithMessage(String file, String message) {
     Activity act = (Activity) this.form.$context();
 
