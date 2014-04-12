@@ -18,7 +18,7 @@ import com.google.appinventor.components.runtime.util.YailList;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Window
+import android.view.Window;
 
 /**
  * A button allowing a user to select one among a list of text strings.
