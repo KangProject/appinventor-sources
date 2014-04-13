@@ -76,6 +76,7 @@ public final class WebViewer extends AndroidViewComponent {
     webview = new WebView(container.$context());
     webview.setWebViewClient(new WebViewerClient());
     webview.getSettings().setJavaScriptEnabled(true);
+    webview.getSettings().setPluginsEnabled(true);
     webview.setFocusable(true);
     // enable pinch zooming and zoom controls
     webview.getSettings().setBuiltInZoomControls(true);

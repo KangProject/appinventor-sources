@@ -37,6 +37,7 @@ public final class WebViewActivity extends Activity {
     super.onCreate(savedInstanceState);
     webview = new WebView(this);
     webview.getSettings().setJavaScriptEnabled(true);
+    webview.getSettings().setPluginsEnabled(true);
     webview.setWebViewClient(new WebViewClient() {
       @Override
       public boolean shouldOverrideUrlLoading(WebView view, String url) {

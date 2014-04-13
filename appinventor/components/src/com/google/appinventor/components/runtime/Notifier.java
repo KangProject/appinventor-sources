@@ -86,7 +86,6 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   private static final String LOG_TAG = "Notifier";
   private final Activity activity;
   private final Handler handler;
-  private ProgressDialog progressDialog;
 
   //Length of Notifier message display
   private int notifierLength = Component.TOAST_LENGTH_LONG;
@@ -379,7 +378,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     int fontsize = (SdkLevel.getLevel() >= SdkLevel.LEVEL_ICE_CREAM_SANDWICH)
         ? 22 : 15;
     Toast toast = Toast.makeText(activity, message, notifierLength);
-    toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
+    toast.setGravity(Gravity.BOTTOM, toast.getXOffset() / 2, toast.getYOffset() / 2);
     TextView textView = new TextView(activity);
     textView.setBackgroundColor(backgroundColor);
     textView.setTextColor(textColor);
@@ -432,7 +431,8 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    */
   @SimpleFunction
   public void ShowProgressDialog(String message, String title, boolean cancelable) {
-    progressDialog.show(activity, title, message, true, cancelable);
+   ProgressDialog pd = ProgressDialog.show(activity, title, message, true);
+   pd.setCancelable(cancelable);
   }
 
   /**
@@ -441,6 +441,6 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    */
   @SimpleFunction
   public void HideProgressDialog() {
-    progressDialog.dismiss();
+    pd.dismiss();
   }
 }
