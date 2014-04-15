@@ -43,12 +43,13 @@ public class Sharing extends AndroidNonvisibleComponent {
       "allowing the user to choose one from the list. The selected app will open with the " +
       "message inserted on it.")
   public void ShareMessage(String message) {
-    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-    shareIntent.putExtra(Intent.EXTRA_TEXT, message);
-    shareIntent.setType("text/plain");
+    Intent sendIntent = new Intent();
+    sendIntent.setAction(Intent.ACTION_SEND);
+    sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+    sendIntent.setType("text/plain");
 
     Context cont = this.form.$context();
-    cont.startActivity(Intent.createChooser(shareIntent,  "Elegir una acción..."));
+    cont.startActivity(Intent.createChooser(sendIntent, "Elegir una acción..."));
   }
 
   /**
