@@ -86,7 +86,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
   private static final String LOG_TAG = "Notifier";
   private final Activity activity;
   private final Handler handler;
-  ProgressDialog pd;
+  ProgressDialog progress;
 
   //Length of Notifier message display
   private int notifierLength = Component.TOAST_LENGTH_LONG;
@@ -432,8 +432,8 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    */
   @SimpleFunction
   public void ShowProgressDialog(String message, String title, boolean cancelable) {
-   pd = ProgressDialog.show(activity, title, message, true);
-   pd.setCancelable(cancelable);
+   progress = ProgressDialog.show(activity, title, message, true);
+   progress.setCancelable(cancelable);
   }
 
   /**
@@ -442,6 +442,6 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
    */
   @SimpleFunction
   public void HideProgressDialog() {
-    pd.dismiss();
+    progress.dismiss();
   }
 }
