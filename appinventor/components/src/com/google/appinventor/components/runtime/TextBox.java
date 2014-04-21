@@ -130,10 +130,7 @@ public final class TextBox extends TextBoxBase {
       "can use [set Text to] to enter any text at all.")
   public void NumbersOnly(boolean acceptsNumbersOnly) {
     if (acceptsNumbersOnly) {
-      view.setInputType(
-          InputType.TYPE_CLASS_NUMBER |
-          InputType.TYPE_NUMBER_FLAG_SIGNED |
-          InputType.TYPE_NUMBER_FLAG_DECIMAL);
+      view.setInputType(InputType.TYPE_CLASS_NUMBER);
     } else {
       view.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
     }
