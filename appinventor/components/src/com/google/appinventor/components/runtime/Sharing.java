@@ -64,7 +64,7 @@ public class Sharing extends AndroidNonvisibleComponent {
 
     // We cannot use Intent.createChooser(shareIntent, "Send using...") because it creates an
     // oversized pop up sharing window.
-    this.form.startActivity(shareIntent);
+    this.form.startActivity(sendIntent);
   }
 
   /**
