@@ -141,15 +141,16 @@ public final class ErrorMessages {
   public static final int ERROR_REPL_SECURITY_ERROR = 1801;
   //AccelerometerSensor Errors
   public static final int ERROR_BAD_VALUE_FOR_ACCELEROMETER_SENSITIVITY = 1901;
-  
-  //File errors
-  public static final int ERROR_CANNOT_FIND_FILE = 2001;
-  public static final int ERROR_CANNOT_READ_FILE = 2002;
-  public static final int ERROR_CANNOT_CREATE_FILE = 2003;
-  public static final int ERROR_CANNOT_WRITE_TO_FILE = 2004;
-  
 
-  // Please start the next group of error numbers at 2001.
+  //Sharing Errors
+  public static final int ERROR_FILE_NOT_FOUND_FOR_SHARING = 2001;
+  //File errors
+  public static final int ERROR_CANNOT_FIND_FILE = 2002;
+  public static final int ERROR_CANNOT_READ_FILE = 2003;
+  public static final int ERROR_CANNOT_CREATE_FILE = 2004;
+  public static final int ERROR_CANNOT_WRITE_TO_FILE = 2005;
+  
+  // Please start the next group of error numbers at 2101.
 
   // Mapping of error numbers to error message format strings.
   private static final Map<Integer, String> errorMessages;
@@ -383,6 +384,9 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_BAD_VALUE_FOR_ACCELEROMETER_SENSITIVITY,
        "The value -- %s -- provided for AccelerometerSensor's sensitivity was bad. " +
        "The only legal values are 1, 2, or 3.");
+    //Sharing errors
+    errorMessages.put(ERROR_FILE_NOT_FOUND_FOR_SHARING,
+        "The File %s could not be found on your device.");
     //File Errors
     errorMessages.put(ERROR_CANNOT_FIND_FILE,
        "The file %s could not be found");
