@@ -147,7 +147,7 @@ public abstract class ButtonBase extends AndroidViewComponent
         if (me.getAction() == MotionEvent.ACTION_DOWN) {
             //button pressed, provide visual feedback AND return false
             if (ShowFeedback()) {
-               view.getBackground().setAlpha(70); // translucent
+               view.setPressed(true);
                view.invalidate();
             }
             TouchDown();
@@ -155,7 +155,7 @@ public abstract class ButtonBase extends AndroidViewComponent
             me.getAction() == MotionEvent.ACTION_CANCEL) {
             //button released, set button back to normal AND return false
             if (ShowFeedback()) {
-               view.getBackground().setAlpha(255); // opaque
+               view.setPressed(false);
                view.invalidate();
             }
             TouchUp();
