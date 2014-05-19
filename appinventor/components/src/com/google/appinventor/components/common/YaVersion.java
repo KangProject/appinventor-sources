@@ -256,8 +256,11 @@ public class YaVersion {
   // - DATEPICKER_COMPONENT_VERSION was incremented to 1.
   // For YOUNG_ANDROID_VERSION 92:
   // - TIMEPICKER_COMPONENT_VERSION was incremented to 1
-
-    public static final int YOUNG_ANDROID_VERSION = 92;
+  // For YOUNG_ANDROID_VERSION 93:
+  // - FILE_COMPONENT_VERSION was incremented to 1.
+  // For YOUNG_ANDROID_VERSION 94:
+  // - YANDEX_COMPONENT_VERSION was incremented to 1.
+    public static final int YOUNG_ANDROID_VERSION = 94;
 
   // ............................... Blocks Language Version Number ...............................
 
@@ -433,10 +436,11 @@ public class YaVersion {
   // For EMAILPICKER_COMPONENT_VERSION 2:
   // - The Alignment property was renamed to TextAlignment.
   public static final int EMAILPICKER_COMPONENT_VERSION = 2;
-  
-  public static final int FILE_COMPONENT_VERSION = 1;
 
   public static final int DATEPICKER_COMPONENT_VERSION = 1;
+
+  // For FILE_COMPONENT_VERSION 1:
+  public static final int FILE_COMPONENT_VERSION = 1;
 
   // For FORM_COMPONENT_VERSION 2:
   // - The Screen.Scrollable property was added.
@@ -707,6 +711,10 @@ public class YaVersion {
 
   // For listView component Version
   public static final int LISTVIEW_COMPONENT_VERSION = 1;
+
+  // For YANDEX_COMPONENT_VERSION 1:
+  // - Initial version.
+  public static final int YANDEX_COMPONENT_VERSION = 1;
 
   // Companion Versions and Update Information
 
