@@ -170,7 +170,7 @@ public abstract class ButtonBase extends AndroidViewComponent
   }
 
   /**
-   * Indicates when the button is touch down
+   * Indicates when a button is touch down
    */
   @SimpleEvent
   public void TouchDown() {
@@ -178,7 +178,7 @@ public abstract class ButtonBase extends AndroidViewComponent
   }
 
   /**
-   * Indicates when the button is touch ends
+   * Indicates when a button touch ends
    */
   @SimpleEvent
   public void TouchUp() {
