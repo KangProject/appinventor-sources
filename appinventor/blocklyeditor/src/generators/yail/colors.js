@@ -1,64 +1,75 @@
-Blockly.Yail = Blockly.Generator.get('Yail');
+// -*- mode: java; c-basic-offset: 2; -*-
+// Copyright 2012 Massachusetts Institute of Technology. All rights reserved.
+
+/**
+ * @license
+ * @fileoverview Color blocks yail generators for Blockly, modified for MIT App Inventor.
+ * @author mckinney@mit.edu (Andrew F. McKinney)
+ */
+
+'use strict';
+
+goog.provide('Blockly.Yail.color');
 
 Blockly.Yail.color = function() {
   // Convert hex value to numeric value
-  var code = -1 * (window.Math.pow(16,6) - window.parseInt("0x" + this.getTitleValue('COLOR').substr(1)));
+  var code = -1 * (window.Math.pow(16,6) - window.parseInt("0x" + this.getFieldValue('COLOR').substr(1)));
   return [code, Blockly.Yail.ORDER_ATOMIC];
 };
 
-Blockly.Yail.color_black = function() {
+Blockly.Yail['color_black'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_blue = function() {
+Blockly.Yail['color_blue'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_cyan = function() {
+Blockly.Yail['color_cyan'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_dark_gray = function() {
+Blockly.Yail['color_dark_gray'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_gray = function() {
+Blockly.Yail['color_gray'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_green = function() {
+Blockly.Yail['color_green'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_light_gray = function() {
+Blockly.Yail['color_light_gray'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_magenta = function() {
+Blockly.Yail['color_magenta'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_pink = function() {
+Blockly.Yail['color_pink'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_red = function() {
+Blockly.Yail['color_red'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_white = function() {
+Blockly.Yail['color_white'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_orange = function() {
+Blockly.Yail['color_orange'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_yellow = function() {
+Blockly.Yail['color_yellow'] = function() {
   return Blockly.Yail.color.call(this);
 };
 
-Blockly.Yail.color_make_color = function() {
+Blockly.Yail['color_make_color'] = function() {
   // Create make colour RBG
   // (call-yail-primitive make-color (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* 255 0 0 0 ) '(any any any any ) "make a list")) '(list) "make-color")
   var argument0 = Blockly.Yail.valueToCode(this, 'RED', Blockly.Yail.ORDER_NONE) || 1;
@@ -74,10 +85,10 @@ Blockly.Yail.color_make_color = function() {
   return [ code, Blockly.Yail.ORDER_ATOMIC ];
 };
 
-Blockly.Yail.color_split_color = function() {
+Blockly.Yail['color_split_color'] = function() {
   // Basic arithmetic operators.
   var mode = this.getTitleValue('OP');
-  var tuple = Blockly.Yail.color_split_color.OPERATORS[mode];
+  var tuple = Blockly.Yail['color_split_color'].OPERATORS[mode];
   var operator1 = tuple[0];
   var operator2 = tuple[1];
   var order = tuple[2];
@@ -95,7 +106,7 @@ Blockly.Yail.color_split_color = function() {
   return [ code, Blockly.Yail.ORDER_ATOMIC ];
 };
 
-Blockly.Yail.color_split_color.OPERATORS = {
+Blockly.Yail['color_split_color'].OPERATORS = {
   RED: ['split-color-red', 'split the red from the color', Blockly.Yail.ORDER_NONE],
   GREEN: ['split-color-green', 'split the green from the color', Blockly.Yail.ORDER_NONE],
   BLUE: ['split-color-blue', 'split the blue from the color', Blockly.Yail.ORDER_NONE],
