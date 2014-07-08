@@ -5,6 +5,23 @@
 
 package com.google.appinventor.components.runtime;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Handler;
+import android.text.Html;
+import android.text.SpannableString;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.appinventor.components.annotations.DesignerComponent;
 import com.google.appinventor.components.annotations.DesignerProperty;
 import com.google.appinventor.components.annotations.PropertyCategory;
@@ -16,26 +33,6 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.PropertyTypeConstants;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.SdkLevel;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Handler;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * The Notifier component displays alert messages and creates Android log entries through
@@ -185,13 +182,18 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     // prevents the user from escaping the dialog by hitting the Back button
     alertDialog.setCancelable(false);
     alertDialog.setMessage(stringToHTML(message));
+
+    // Warning: The SDK button names are confusing.  If there are
+    // three buttons, they go in the order  POSITIVE | NEUTRAL | NEGATIVE
+    // In our notifier, we want choices like YES | NO | CANCEL, so NO maps to 
+    // neutral and CANCEL maps to NEGATIVE.
     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, button1Text,
         new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         positiveAction.run();
       }
     });
-    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, button2Text,
+    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, button2Text,
         new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         negativeAction.run();
@@ -203,7 +205,7 @@ public final class Notifier extends AndroidNonvisibleComponent implements Compon
     // and will raise AfterChoosing when pressed.
     if (cancelable)  {
       final String cancelButtonText="Cancelar";
-      alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, cancelButtonText,
+      alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, cancelButtonText,
           new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           cancelAction.run();
