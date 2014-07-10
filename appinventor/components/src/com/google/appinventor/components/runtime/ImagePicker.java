@@ -55,7 +55,7 @@ public class ImagePicker extends Picker implements ActivityResultListener {
   private static final String LOG_TAG = "ImagePicker";
   
   // directory on external storage for storing the files for the saved images
-  private static final String imagePickerDirectoryName = "/Pictures/_app_inventor_image_picker";
+  private static final String imagePickerDirectoryName = "/Pictures";
   
   // prefix for image file names
   private static final String FILE_PREFIX = "picked_image";
@@ -90,6 +90,16 @@ public class ImagePicker extends Picker implements ActivityResultListener {
   @Override
   protected Intent getIntent() {
     return new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+  }
+
+  /**
+   * Method to set the directory where the images will be saved.
+   * directoryName must start with a slash.
+   *
+   * @param directoryName directory on external storage for storing the files for the saved images.
+   */
+  public void setPathToSave(String directoryName) {
+    imagePickerDirectoryName = directoryName;
   }
 
   /**
