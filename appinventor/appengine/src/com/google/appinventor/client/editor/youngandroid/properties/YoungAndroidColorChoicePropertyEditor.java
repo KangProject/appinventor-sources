@@ -24,7 +24,7 @@ public final class YoungAndroidColorChoicePropertyEditor extends ColorChoiceProp
     new Color(MESSAGES.darkGrayColor(), Color.ALPHA_OPAQUE, "444444"),
     new Color(MESSAGES.grayColor(), Color.ALPHA_OPAQUE, "888888"),
     new Color(MESSAGES.greenColor(), Color.ALPHA_OPAQUE, "00FF00"),
-    new Color(MESSAGES.lightGrayColor(), Color.ALPHA_OPAQUE, "CCCCCC"),
+    new Color(MESSAGES.lightGrayColor(), Color.ALPHA_OPAQUE, "F3F3F3"),
     new Color(MESSAGES.holoBlueColor(), Color.ALPHA_OPAQUE, "33B5E5"),
     new Color(MESSAGES.holoDarkBlueColor(), Color.ALPHA_OPAQUE, "0099CC"),
     new Color(MESSAGES.magentaColor(), Color.ALPHA_OPAQUE, "FF00FF"),
