@@ -55,7 +55,7 @@ public class ImagePicker extends Picker implements ActivityResultListener {
   private static final String LOG_TAG = "ImagePicker";
   
   // directory on external storage for storing the files for the saved images
-  private static final String imagePickerDirectoryName = "/Pictures";
+  private static String imagePickerDirectoryName = "/Pictures";
   
   // prefix for image file names
   private static final String FILE_PREFIX = "picked_image";
